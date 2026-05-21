@@ -1,8 +1,9 @@
 public enum GameState
 {
+    Meta,
     Setup,
-    Running,
+    Fight,
     Victory,
     Defeat,
-    Clenup
+    Cleanup
 }

@@ -14,15 +14,20 @@ public class Game : MonoBehaviour
 
     private GameData Data { get; set; }
 
+    private void Start() => ChangeState(GameState.Meta);
+
     private void Update()
     {
         switch (State)
         {
+            case GameState.Meta:
+                Meta();
+                break;
             case GameState.Setup:
                 Setup();
                 break;
-            case GameState.Running:
-                Running();
+            case GameState.Fight:
+                Fight();
                 break;
             case GameState.Victory:
                 Victory();
@@ -30,10 +35,24 @@ public class Game : MonoBehaviour
             case GameState.Defeat:
                 Defeat();
                 break;
-            case GameState.Clenup:
+            case GameState.Cleanup:
                 Cleanup();
                 break;
             default: throw new System.Exception($"Unknown State : {State}");
+        }
+    }
+
+    private void ChangeState(GameState state)
+    {
+        State = state;
+        UI.Refresh(state);
+    }
+
+    private void Meta()
+    {
+        if (UI.MetaScreen.InputProvided)
+        {
+            ChangeState(GameState.Setup);
         }
     }
 
@@ -44,13 +63,11 @@ public class Game : MonoBehaviour
         SetupPlayerCharacter();
         SetupEnemies();
 
-        State = GameState.Running;
+        ChangeState(GameState.Fight);
 
         void SetupPlayerCharacter()
         {
-            Vector3 position = Vector3.zero;
-            Quaternion rotation = Quaternion.identity;
-            Character character = Instantiate(Config.PlayerPrefab, position, rotation);
+            Character character = Instantiate(Config.PlayerPrefab, Vector3.zero, Quaternion.identity);
             character.Initialize();
 
             CameraController cameraController = Instantiate(Config.CameraController);
@@ -69,8 +86,7 @@ public class Game : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 Vector3 position = GetRandomPositionOnSurface();
-                Quaternion rotation = Quaternion.identity;
-                Character character = Instantiate(Config.EnemyPrefab, position, rotation);
+                Character character = Instantiate(Config.EnemyPrefab, position, Quaternion.identity);
                 character.Initialize();
 
                 HealthWidget healthWidget = Instantiate(Config.HealthWidgetWorldSpace, character.transform, false);
@@ -98,17 +114,17 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void Running()
+    private void Fight()
     {
         Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
 
         if (WinCondition())
         {
-            State = GameState.Victory;
+            ChangeState(GameState.Victory);
         }
         else if (LoseCondition())
         {
-            State = GameState.Defeat;
+            ChangeState(GameState.Defeat);
         }
 
         bool WinCondition() => Data.Enemies.All(enemy => enemy.IsDead);
@@ -118,26 +134,23 @@ public class Game : MonoBehaviour
 
     private void Victory()
     {
-        State = GameState.Clenup;
+        if (UI.VictoryScreen.InputProvided)
+        {
+            ChangeState(GameState.Cleanup);
+        }
     }
 
     private void Defeat()
     {
-        State = GameState.Clenup;
+        if (UI.DefeatScreen.InputProvided)
+        {
+            ChangeState(GameState.Cleanup);
+        }
     }
 
     private void Cleanup()
     {
-        Destroy(Data.Player.gameObject);
-        Destroy(Data.Camera.gameObject);
-
-        foreach(Character character in Data.Enemies)
-        {
-            Destroy(character.gameObject);
-        }
-
-        Data = null;
-
-        State = GameState.Setup;
+        Data.Dispose();
+        ChangeState(GameState.Meta);
     }
 }
