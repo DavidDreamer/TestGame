@@ -5,8 +5,12 @@ public class CameraController : MonoBehaviour
     [field: SerializeField]
     private CameraControllerConfig Config { get; set; }
 
-    [field: SerializeField]
-    public GameObject Target { get; set; }
+    private Character Target { get; set; }
+
+    public void Bind(Character target)
+    {
+        Target = target;
+    }
 
     private void LateUpdate()
     {

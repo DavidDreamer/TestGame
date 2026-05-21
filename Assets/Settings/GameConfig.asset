@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a8111635d91b14391d7556b1258de4, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::GameConfig
+  <PlayerPrefab>k__BackingField: {fileID: 8564900425627402095, guid: 612dab9ade386214199ba27d373fd6ce, type: 3}
+  <EnemyPrefab>k__BackingField: {fileID: 0}
+  <CameraController>k__BackingField: {fileID: 8671420588479294870, guid: f63586db15d750844bf7f8aae211383a, type: 3}
+  <MinEnemiesCount>k__BackingField: 0
+  <MaxEnemiesCount>k__BackingField: 0

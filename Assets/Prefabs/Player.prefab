@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7901777533877521637}
   - component: {fileID: 8838008970162195450}
   - component: {fileID: 8770603543464668387}
+  - component: {fileID: 8564900425627402095}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -139,6 +140,18 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &8564900425627402095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814194450953617562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826a6200cacee2f408a5b1ba093a22fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character
 --- !u!1001 &920936420126342322
 PrefabInstance:
   m_ObjectHideFlags: 0
