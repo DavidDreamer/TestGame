@@ -17,7 +17,7 @@ public class Ability
         Config = config;
     }
 
-    public virtual void Activate()
+    public virtual void Activate(Character character)
     {
         ActiveCooldown = Cooldown;
     }

@@ -125,8 +125,6 @@ public class Game : MonoBehaviour
 
     private void Fight()
     {
-        Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
-
         Data.Player.Tick();
         Data.CharacterInputListener.Tick();
 
