@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
         Target = target;
     }
 
-    private void LateUpdate()
+    public void Tick()
     {
         Quaternion targetRotation = Quaternion.Euler(Config.Angle, Target.transform.eulerAngles.y, 0);
         float rotationDelta = Config.RotationSpeed * Time.deltaTime;

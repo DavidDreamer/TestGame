@@ -42,6 +42,16 @@ public class Game : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        switch (State)
+        {
+            case GameState.Fight:
+            Data.Camera.Tick();
+            break;
+        }    
+    }
+
     private void ChangeState(GameState state)
     {
         State = state;
@@ -67,16 +77,16 @@ public class Game : MonoBehaviour
 
         void SetupPlayerCharacter()
         {
-            Character character = Instantiate(Config.PlayerPrefab, Vector3.zero, Quaternion.identity);
-            character.Initialize();
+            Data.Player = Instantiate(Config.PlayerPrefab, Vector3.zero, Quaternion.identity);
+            Data.Player.Initialize();
 
-            CameraController cameraController = Instantiate(Config.CameraController);
-            cameraController.Bind(character);
+            Data.Camera = Instantiate(Config.CameraController);
+            Data.Camera.Bind(Data.Player);
 
-            UI.Bind(character);
+            Data.CharacterInputListener = Instantiate(Config.CharacterInputListener);
+            Data.CharacterInputListener.Bind(Data.Player);
 
-            Data.Player = character;
-            Data.Camera = cameraController;
+            UI.Bind(Data.Player);
         }
 
         void SetupEnemies()
@@ -118,6 +128,8 @@ public class Game : MonoBehaviour
         Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
 
         Data.Player.Tick();
+        Data.CharacterInputListener.Tick();
+
         foreach (var enemy in Data.Enemies)
         {
             enemy.Tick();

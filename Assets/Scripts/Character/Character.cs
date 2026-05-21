@@ -3,7 +3,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [field: SerializeField]
-    public CharacterConfig Config { get; set; }
+    public CharacterConfig Config { get; private set; }
+
+    [field: SerializeField]
+    public CharacterController CharacterController { get; private set; }
 
     [field: SerializeField]
     public Health Health { get; set; }

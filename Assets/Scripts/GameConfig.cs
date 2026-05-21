@@ -7,10 +7,13 @@ public class GameConfig : ScriptableObject
     public Character PlayerPrefab { get; private set; }
 
     [field: SerializeField]
+    public Character EnemyPrefab { get; private set; }
+
+    [field: SerializeField]
     public CameraController CameraController { get; private set; }
 
     [field: SerializeField]
-    public Character EnemyPrefab { get; private set; }
+    public CharacterInputListener CharacterInputListener { get; private set; }
 
     [field: SerializeField]
     public int MinEnemiesCount { get; private set; }
