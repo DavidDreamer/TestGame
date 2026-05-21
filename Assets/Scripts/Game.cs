@@ -89,8 +89,7 @@ public class Game : MonoBehaviour
                 Character character = Instantiate(Config.EnemyPrefab, position, Quaternion.identity);
                 character.Initialize();
 
-                HealthWidget healthWidget = Instantiate(Config.HealthWidgetWorldSpace, character.transform, false);
-                healthWidget.Bind(character.Health);
+                UI.CreateWorldSpaceHealthWidget(character);
 
                 Data.Enemies.Add(character);
             }
@@ -159,6 +158,7 @@ public class Game : MonoBehaviour
     private void Cleanup()
     {
         Data.Dispose();
+        UI.Cleanup();
         ChangeState(GameState.Meta);
     }
 }

@@ -13,9 +13,6 @@ public class GameConfig : ScriptableObject
     public Character EnemyPrefab { get; private set; }
 
     [field: SerializeField]
-    public HealthWidget HealthWidgetWorldSpace { get; private set; }
-
-    [field: SerializeField]
     public int MinEnemiesCount { get; private set; }
 
     [field: SerializeField]

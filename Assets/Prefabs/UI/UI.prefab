@@ -126,6 +126,7 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 5486533161939620126}
   <Ability1>k__BackingField: {fileID: 7011398553651795913}
   <Ability2>k__BackingField: {fileID: 1002872337918475222}
+  <HealthWidgetWorldSpacePrefab>k__BackingField: {fileID: 2121757906521392152, guid: ad9a768af35658c489a187c8fcfd333f, type: 3}
 --- !u!1001 &92031852544735353
 PrefabInstance:
   m_ObjectHideFlags: 0

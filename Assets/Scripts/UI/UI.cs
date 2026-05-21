@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UI : MonoBehaviour
@@ -20,6 +21,18 @@ public class UI : MonoBehaviour
 
     [field: SerializeField]
     public AbilityWidget Ability2 { get; set; }
+
+    [field: SerializeField]
+    public HealthWidget HealthWidgetWorldSpacePrefab { get; set; }
+
+    private List<HealthWidget> WorldSpaceHealthWidgets { get; } = new();
+
+    public void CreateWorldSpaceHealthWidget(Character character)
+    {
+        HealthWidget healthWidget = Instantiate(HealthWidgetWorldSpacePrefab, character.transform, false);
+        healthWidget.Bind(character.Health);
+        WorldSpaceHealthWidgets.Add(healthWidget);
+    }
 
     public void Refresh(GameState gameState)
     {
@@ -44,5 +57,15 @@ public class UI : MonoBehaviour
         Health.Tick();
         Ability1.Tick();
         Ability2.Tick();
+
+        foreach (HealthWidget healthWidget in WorldSpaceHealthWidgets)
+        {
+            healthWidget.Tick();
+        }
+    }
+
+    public void Cleanup()
+    {
+        WorldSpaceHealthWidgets.Clear();
     }
 }
