@@ -5,6 +5,9 @@ public class Game : MonoBehaviour
     [field: SerializeField]
     private GameConfig Config { get; set; }
 
+    [field: SerializeField]
+    private UI UI { get; set; }
+
     private GameState State { get; set; }
 
     private GameData Data { get; set; }
@@ -48,6 +51,8 @@ public class Game : MonoBehaviour
             CameraController cameraController = Instantiate(Config.CameraController);
             cameraController.Bind(character);
 
+            UI.Health.Bind(character.Health);
+
             Data.Player = character;
             Data.Camera = cameraController;
         }
@@ -55,6 +60,8 @@ public class Game : MonoBehaviour
 
     private void Running()
     {
+        UI.Health.Tick();
+
         if (WinCondition())
         {
             State = GameState.Victory;
