@@ -4,8 +4,11 @@ using UnityEngine;
 public class CharacterConfig : ScriptableObject
 {
     [field: SerializeField]
+    public float Health { get; private set; }
+
+    [field: SerializeField]
     public float MovementSpeed { get; private set; }
 
-     [field: SerializeField]
+    [field: SerializeField]
     public float RotationSpeed { get; private set; }
 }

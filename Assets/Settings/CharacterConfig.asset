@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c58f6721f096524e82f9d8a1fe46dc7, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: Assembly-CSharp::CharacterConfig
+  <Health>k__BackingField: 100
   <MovementSpeed>k__BackingField: 10
   <RotationSpeed>k__BackingField: 1
