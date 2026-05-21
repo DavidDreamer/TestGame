@@ -42,6 +42,10 @@ public class UI : MonoBehaviour
         Health.gameObject.SetActive(gameState == GameState.Fight);
         Ability1.gameObject.SetActive(gameState == GameState.Fight);
         Ability2.gameObject.SetActive(gameState == GameState.Fight);
+
+        bool cursorNeeded = gameState != GameState.Fight;
+        Cursor.visible = cursorNeeded;
+        Cursor.lockState = cursorNeeded ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void Bind(Character character)
