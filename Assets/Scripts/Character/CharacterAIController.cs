@@ -21,7 +21,7 @@ public class CharacterAIController : MonoBehaviour
         if (distanceToTarget <= attackAbility.Config.Radius && !attackAbility.OnCooldown)
         {
             Character.NavMeshAgent.isStopped = true;
-            Character.Abilities[0].Activate(Character);
+            Character.ActivateAbility(0);
         }
         else
         {

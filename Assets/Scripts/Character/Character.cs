@@ -13,12 +13,15 @@ public class Character : MonoBehaviour
     public NavMeshAgent NavMeshAgent { get; private set; }
 
     [field: SerializeField]
+    public Animation Animation { get; private set; }
+
+    [field: SerializeField]
     public Health Health { get; set; }
 
     public bool IsDead => Health.Current == 0f;
 
     //Assume we always have 2 abilities
-    public Ability[] Abilities { get; set; }
+    public Ability[] Abilities { get; private set; }
 
     public void Initialize()
     {
@@ -38,5 +41,13 @@ public class Character : MonoBehaviour
         {
             Abilities[i].Tick();
         }
+    }
+
+    public void ActivateAbility(int index)
+    {
+        Ability ability = Abilities[index];
+        ability.Activate(this);
+
+        Animation.Play(ability.Name, PlayMode.StopAll);
     }
 }

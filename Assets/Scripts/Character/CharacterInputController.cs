@@ -45,12 +45,12 @@ public class CharacterInputController : MonoBehaviour
 
         if (Ability1Action.WasPressedThisFrame())
         {
-            Character.Abilities[0].Activate(Character);
+            Character.ActivateAbility(0);
         }
 
         if (Ability2Action.WasPressedThisFrame())
         {
-            Character.Abilities[1].Activate(Character);
+            Character.ActivateAbility(1);
         }
 
         void EvaluateRotation()

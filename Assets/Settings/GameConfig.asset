@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
   <PlayerPrefab>k__BackingField: {fileID: 8564900425627402095, guid: 612dab9ade386214199ba27d373fd6ce, type: 3}
-  <EnemyPrefab>k__BackingField: {fileID: 8564900425627402095, guid: 986ffe75a3ada63478f39e5eeb97cd6f, type: 3}
+  <EnemyPrefab>k__BackingField: {fileID: 6278569532272470949, guid: 724a6e15031fb324a9b06939348191a7, type: 3}
   <CameraController>k__BackingField: {fileID: 8671420588479294870, guid: f63586db15d750844bf7f8aae211383a, type: 3}
   <CharacterInputController>k__BackingField: {fileID: 1264917246686779373, guid: 7f4da7c6bb0327949b5fd57657515aa0, type: 3}
   <MinEnemiesCount>k__BackingField: 3
