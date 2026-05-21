@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -40,12 +41,15 @@ public class Game : MonoBehaviour
         Data = new();
 
         SetupPlayerCharacter();
+        SetupEnemies();
 
         State = GameState.Running;
 
         void SetupPlayerCharacter()
         {
-            Character character = Instantiate(Config.PlayerPrefab);
+            Vector3 position = Vector3.zero;
+            Quaternion rotation = Quaternion.identity;
+            Character character = Instantiate(Config.PlayerPrefab, position, rotation);
             character.Initialize();
 
             CameraController cameraController = Instantiate(Config.CameraController);
@@ -56,10 +60,27 @@ public class Game : MonoBehaviour
             Data.Player = character;
             Data.Camera = cameraController;
         }
+
+        void SetupEnemies()
+        {
+            int count = Random.Range(Config.MinEnemiesCount, Config.MaxEnemiesCount + 1);
+
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 position = Vector3.zero;
+                Quaternion rotation = Quaternion.identity;
+                Character character = Instantiate(Config.EnemyPrefab, position, rotation);
+                character.Initialize();
+
+                Data.Enemies.Add(character);
+            }
+        }
     }
 
     private void Running()
     {
+        Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
+
         UI.Health.Tick();
 
         if (WinCondition())
@@ -71,7 +92,7 @@ public class Game : MonoBehaviour
             State = GameState.Defeat;
         }
 
-        bool WinCondition() => false;
+        bool WinCondition() => Data.Enemies.All(enemy => enemy.IsDead);
 
         bool LoseCondition() => Data.Player.IsDead;
     }
@@ -90,6 +111,11 @@ public class Game : MonoBehaviour
     {
         Destroy(Data.Player.gameObject);
         Destroy(Data.Camera.gameObject);
+
+        foreach(Character character in Data.Enemies)
+        {
+            Destroy(character.gameObject);
+        }
 
         Data = null;
 
