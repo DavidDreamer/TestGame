@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c58f6721f096524e82f9d8a1fe46dc7, type: 3}
-  m_Name: CharacterConfig
+  m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::CharacterConfig
   <Health>k__BackingField: 100
-  <MovementSpeed>k__BackingField: 10
+  <MovementSpeed>k__BackingField: 5
   <RotationSpeed>k__BackingField: 1
   <Abilities>k__BackingField:
-  - {fileID: 11400000, guid: f1ddfd10c92a43b40a8f6dd025439177, type: 2}
-  - {fileID: 11400000, guid: aa413eb5f8be89c4c80b650f4dfb3c56, type: 2}
+  - {fileID: 11400000, guid: f6312d10b4a54ed47bad1be77a7b5a3a, type: 2}

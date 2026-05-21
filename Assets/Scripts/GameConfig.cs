@@ -13,7 +13,7 @@ public class GameConfig : ScriptableObject
     public CameraController CameraController { get; private set; }
 
     [field: SerializeField]
-    public CharacterInputListener CharacterInputListener { get; private set; }
+    public CharacterInputController CharacterInputController { get; private set; }
 
     [field: SerializeField]
     public int MinEnemiesCount { get; private set; }

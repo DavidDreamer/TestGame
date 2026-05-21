@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class Character : MonoBehaviour
 
     [field: SerializeField]
     public CharacterController CharacterController { get; private set; }
+
+    [field: SerializeField]
+    public NavMeshAgent NavMeshAgent { get; private set; }
 
     [field: SerializeField]
     public Health Health { get; set; }

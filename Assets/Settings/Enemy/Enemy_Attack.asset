@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1e15b77a4c9c424abfc5779c695964b, type: 3}
-  m_Name: AttackAbilityConfig
+  m_Name: Enemy_Attack
   m_EditorClassIdentifier: Assembly-CSharp::AttackAbilityConfig
   <Name>k__BackingField: Attack
-  <Cooldown>k__BackingField: 1
-  <Radius>k__BackingField: 3
+  <Cooldown>k__BackingField: 2.5
+  <Radius>k__BackingField: 2
   <DamageParams>k__BackingField:
-    Min: 25
-    Max: 35
-    CritChance: 0.1
-    CritMultiplier: 2
+    Min: 5
+    Max: 10
+    CritChance: 0.05
+    CritMultiplier: 1.5

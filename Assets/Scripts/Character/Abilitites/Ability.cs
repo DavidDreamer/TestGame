@@ -11,7 +11,9 @@ public class Ability
     public float ActiveCooldown { get; private set; }
 
     public float ActiveCooldownNormalized => ActiveCooldown / Cooldown;
-
+    
+    public bool OnCooldown => ActiveCooldown > 0f;
+    
     public Ability(AbilityConfig config)
     {
         Config = config;

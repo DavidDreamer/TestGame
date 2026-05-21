@@ -72,8 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826a6200cacee2f408a5b1ba093a22fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  <Config>k__BackingField: {fileID: 11400000, guid: f3fd757c02b91894bb7bde96b171c79a, type: 2}
+  <Config>k__BackingField: {fileID: 11400000, guid: 95079cca91796c9488b2dbc9fa1fb3e6, type: 2}
   <CharacterController>k__BackingField: {fileID: 8838008970162195450}
+  <NavMeshAgent>k__BackingField: {fileID: 0}
   <Health>k__BackingField: {fileID: -1084340160730533973}
 --- !u!114 &-1084340160730533973
 MonoBehaviour:

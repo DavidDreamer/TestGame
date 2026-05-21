@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be32a6dd2e7035244b7bdc0ff972f0fc, type: 3}
-  m_Name: DashAbilityConfig
+  m_Name: Player_Dash
   m_EditorClassIdentifier: Assembly-CSharp::DashAbilityConfig
   <Name>k__BackingField: Dash
   <Cooldown>k__BackingField: 5

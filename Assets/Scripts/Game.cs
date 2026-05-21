@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -47,9 +48,9 @@ public class Game : MonoBehaviour
         switch (State)
         {
             case GameState.Fight:
-            Data.Camera.Tick();
-            break;
-        }    
+                Data.Camera.Tick();
+                break;
+        }
     }
 
     private void ChangeState(GameState state)
@@ -83,8 +84,8 @@ public class Game : MonoBehaviour
             Data.Camera = Instantiate(Config.CameraController);
             Data.Camera.Bind(Data.Player);
 
-            Data.CharacterInputListener = Instantiate(Config.CharacterInputListener);
-            Data.CharacterInputListener.Bind(Data.Player);
+            Data.InputController = Instantiate(Config.CharacterInputController);
+            Data.InputController.Bind(Data.Player);
 
             UI.Bind(Data.Player);
         }
@@ -98,6 +99,10 @@ public class Game : MonoBehaviour
                 Vector3 position = GetRandomPositionOnSurface();
                 Character character = Instantiate(Config.EnemyPrefab, position, Quaternion.identity);
                 character.Initialize();
+
+                var aiController = character.AddComponent<CharacterAIController>();
+                aiController.Initialize(character);
+                Data.AIControllers.Add(aiController);
 
                 UI.CreateWorldSpaceHealthWidget(character);
 
@@ -125,8 +130,14 @@ public class Game : MonoBehaviour
 
     private void Fight()
     {
+        Data.InputController.Tick();
+
+        foreach (var aiController in Data.AIControllers)
+        {
+            aiController.Tick(Data.Player);
+        }
+
         Data.Player.Tick();
-        Data.CharacterInputListener.Tick();
 
         foreach (var enemy in Data.Enemies)
         {

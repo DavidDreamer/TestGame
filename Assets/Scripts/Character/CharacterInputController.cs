@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterInputListener : MonoBehaviour
+public class CharacterInputController : MonoBehaviour
 {
     [field: SerializeField]
     private InputAction MoveAction { get; set; }
