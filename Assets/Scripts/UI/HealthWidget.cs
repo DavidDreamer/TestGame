@@ -20,13 +20,13 @@ public class HealthWidget : MonoBehaviour
         Slider.maxValue = health.Maximum;
     }
     
-    public void Update()
+    public void Tick()
     {
         if (Health == null)
         {
             return;
         }
-        
+
         Slider.value = Health.Current;
         Label.text = $"{(int)Health.Current}/{(int)Health.Maximum}";
     }

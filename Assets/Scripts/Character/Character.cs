@@ -10,9 +10,26 @@ public class Character : MonoBehaviour
 
     public bool IsDead => Health.Current == 0f;
 
+    //Assume we always have 2 abilities
+    public Ability[] Abilities { get; set; }
+
     public void Initialize()
     {
         Health.Current = Config.Health;
         Health.Maximum = Config.Health;
+
+        Abilities = new Ability[Config.Abilities.Length];
+        for (int i = 0; i < Abilities.Length; i++)
+        {
+            Abilities[i] = Config.Abilities[i].Create();
+        }
+    }
+
+    public void Tick()
+    {
+        for (int i = 0; i < Abilities.Length; i++)
+        {
+            Abilities[i].Tick();
+        }
     }
 }

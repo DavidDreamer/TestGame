@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0133a0fd40d12dc4f848393860637b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterInputListener
+  <Character>k__BackingField: {fileID: 8564900425627402095}
   <CharacterController>k__BackingField: {fileID: 8838008970162195450}
   <Config>k__BackingField: {fileID: 11400000, guid: f3fd757c02b91894bb7bde96b171c79a, type: 2}
   <MoveAction>k__BackingField:
@@ -139,6 +140,40 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Rotation
+      m_Flags: 0
+    m_Flags: 0
+  <Ability1Action>k__BackingField:
+    m_Name: Ability 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 88e1df7b-69d0-490f-96af-3070a7616820
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 75191331-982f-4adf-abba-5528d3cea7e9
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ability 1
+      m_Flags: 0
+    m_Flags: 0
+  <Ability2Action>k__BackingField:
+    m_Name: Ability 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c34cc53a-7eb6-49f2-9e3e-302faabe1279
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0fbad535-3970-4cba-9260-a8e914b6c6d0
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ability 2
       m_Flags: 0
     m_Flags: 0
 --- !u!114 &8564900425627402095

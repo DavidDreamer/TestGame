@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class CharacterInputListener : MonoBehaviour
 {
     [field: SerializeField]
+    private Character Character { get; set; }
+
+    [field: SerializeField]
     private CharacterController CharacterController { get; set; }
 
     [field: SerializeField]
@@ -15,22 +18,42 @@ public class CharacterInputListener : MonoBehaviour
     [field: SerializeField]
     private InputAction RotationAction { get; set; }
 
+    [field: SerializeField]
+    private InputAction Ability1Action { get; set; }
+
+    [field: SerializeField]
+    private InputAction Ability2Action { get; set; }
+
     private void OnEnable()
     {
         MoveAction.Enable();
         RotationAction.Enable();
+        Ability1Action.Enable();
+        Ability2Action.Enable();
     }
 
     private void OnDisable()
     {
         MoveAction.Disable();
         RotationAction.Disable();
+        Ability1Action.Disable();
+        Ability2Action.Disable();
     }
 
     void Update()
     {
         EvaluateRotation();
         EvaluatePosition();
+
+        if (Ability1Action.WasPressedThisFrame())
+        {
+            Character.Abilities[0].Activate();
+        }
+
+        if (Ability2Action.WasPressedThisFrame())
+        {
+            Character.Abilities[1].Activate();
+        }
 
         void EvaluateRotation()
         {

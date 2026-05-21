@@ -6,7 +6,7 @@ public class LookToCamera : MonoBehaviour
     {
         Camera mainCamera = Camera.main;
 
-        if(mainCamera == null)
+        if (mainCamera == null)
         {
             return;
         }

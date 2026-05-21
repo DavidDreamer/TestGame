@@ -73,7 +73,7 @@ public class Game : MonoBehaviour
             CameraController cameraController = Instantiate(Config.CameraController);
             cameraController.Bind(character);
 
-            UI.Health.Bind(character.Health);
+            UI.Bind(character);
 
             Data.Player = character;
             Data.Camera = cameraController;
@@ -117,6 +117,14 @@ public class Game : MonoBehaviour
     private void Fight()
     {
         Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
+
+        Data.Player.Tick();
+        foreach (var enemy in Data.Enemies)
+        {
+            enemy.Tick();
+        }
+
+        UI.Tick();
 
         if (WinCondition())
         {

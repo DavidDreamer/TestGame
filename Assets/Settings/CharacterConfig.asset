@@ -15,3 +15,6 @@ MonoBehaviour:
   <Health>k__BackingField: 100
   <MovementSpeed>k__BackingField: 10
   <RotationSpeed>k__BackingField: 1
+  <Abilities>k__BackingField:
+  - {fileID: 11400000, guid: f1ddfd10c92a43b40a8f6dd025439177, type: 2}
+  - {fileID: 11400000, guid: aa413eb5f8be89c4c80b650f4dfb3c56, type: 2}
