@@ -6,6 +6,9 @@ public abstract class AbilityConfig : ScriptableObject
     public string Name { get; private set; }
 
     [field: SerializeField]
+    public float CastTime { get; private set; }
+
+    [field: SerializeField]
     public float Cooldown { get; private set; }
 
     public abstract Ability Create();

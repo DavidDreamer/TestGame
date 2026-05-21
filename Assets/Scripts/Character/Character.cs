@@ -39,14 +39,20 @@ public class Character : MonoBehaviour
     {
         for (int i = 0; i < Abilities.Length; i++)
         {
-            Abilities[i].Tick();
+            Abilities[i].Tick(this);
         }
     }
 
-    public void ActivateAbility(int index)
+    public void TryActivateAbility(int index)
     {
         Ability ability = Abilities[index];
-        ability.Activate(this);
+
+        if (!ability.IsReady)
+        {
+            return;
+        }
+
+        ability.Activate();
 
         Animation.Play(ability.Name, PlayMode.StopAll);
     }

@@ -19,6 +19,6 @@ public class AbilityWidget : MonoBehaviour
 
     public void Tick()
     {
-        Cooldown.fillAmount = Ability.ActiveCooldownNormalized;
+        Cooldown.fillAmount = Ability.CooldownProgress;
     }
 }

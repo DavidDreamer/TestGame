@@ -18,10 +18,10 @@ public class CharacterAIController : MonoBehaviour
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
         var attackAbility = (AttackAbility)Character.Abilities[0];
 
-        if (distanceToTarget <= attackAbility.Config.Radius && !attackAbility.OnCooldown)
+        if (distanceToTarget <= attackAbility.Config.Radius && attackAbility.IsReady)
         {
             Character.NavMeshAgent.isStopped = true;
-            Character.ActivateAbility(0);
+            Character.TryActivateAbility(0);
         }
         else
         {

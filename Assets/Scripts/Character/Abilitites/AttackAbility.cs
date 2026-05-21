@@ -9,9 +9,9 @@ public class AttackAbility : Ability
         Config = config;
     }
 
-    public override void Activate(Character character)
+    public override void OnCast(Character character)
     {
-        base.Activate(character);
+        base.OnCast(character);
 
         //Unoptimized fast solution
         Collider[] colliders = Physics.OverlapSphere(character.transform.position, Config.Radius);

@@ -8,27 +8,62 @@ public class Ability
 
     public float Cooldown => Config.Cooldown;
 
-    public float ActiveCooldown { get; private set; }
+    public AbilityState State { get; private set; }
 
-    public float ActiveCooldownNormalized => ActiveCooldown / Cooldown;
-    
-    public bool OnCooldown => ActiveCooldown > 0f;
-    
+    public float CastingTimeLeft { get; private set; }
+
+    public float CooldownTimeLeft { get; private set; }
+
+    public float CooldownProgress => CooldownTimeLeft / Cooldown;
+
+    public bool IsReady => State == AbilityState.Ready;
+
     public Ability(AbilityConfig config)
     {
         Config = config;
     }
 
-    public virtual void Activate(Character character)
+    public void Activate()
     {
-        ActiveCooldown = Cooldown;
+        CastingTimeLeft = Config.CastTime;
+        State = AbilityState.Casting;
     }
 
-    public void Tick()
+    public void Tick(Character character)
     {
-        if (ActiveCooldown > 0)
+        switch (State)
         {
-            ActiveCooldown -= Mathf.Max(0, Time.deltaTime);
+            case AbilityState.Ready:
+                break;
+            case AbilityState.Casting:
+                CastingTimeLeft = Mathf.Max(0, CastingTimeLeft - Time.deltaTime);
+                if (CastingTimeLeft == 0)
+                {
+                    OnCast(character);
+                    CooldownTimeLeft = Cooldown;
+                    State = AbilityState.OnCooldown;
+                }
+                else
+                {
+                    float progress = CastingTimeLeft / Config.CastTime;
+                    OnCasting(character, progress);
+                }
+                break;
+            case AbilityState.OnCooldown:
+                CooldownTimeLeft = Mathf.Max(0, CooldownTimeLeft - Time.deltaTime);
+                if (CooldownTimeLeft == 0f)
+                {
+                    State = AbilityState.Ready;
+                }
+                break;
         }
+    }
+
+    public virtual void OnCasting(Character character, float progress)
+    {
+    }
+
+    public virtual void OnCast(Character character)
+    {
     }
 }
