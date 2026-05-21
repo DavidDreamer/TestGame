@@ -73,6 +73,9 @@ public class Game : MonoBehaviour
                 Character character = Instantiate(Config.EnemyPrefab, position, rotation);
                 character.Initialize();
 
+                HealthWidget healthWidget = Instantiate(Config.HealthWidgetWorldSpace, character.transform, false);
+                healthWidget.Bind(character.Health);
+
                 Data.Enemies.Add(character);
             }
 
@@ -98,8 +101,6 @@ public class Game : MonoBehaviour
     private void Running()
     {
         Data.Player.Health.Current = Mathf.Max(0, Data.Player.Health.Current - 20f * Time.deltaTime);
-
-        UI.Health.Tick();
 
         if (WinCondition())
         {
