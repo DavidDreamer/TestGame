@@ -18,19 +18,19 @@ public class AttackAbility : Ability
 
         foreach (Collider collider in colliders)
         {
-            var collidedCharacter = collider.GetComponent<Character>();
+            var target = collider.GetComponent<Character>();
 
-            if (collidedCharacter == null)
-            {
-                continue;
-            }
-            
-            if (collidedCharacter == character)
+            if (target == null)
             {
                 continue;
             }
 
-            collidedCharacter.Health.Current = Mathf.Max(0, collidedCharacter.Health.Current - 10);
+            if (target == character)
+            {
+                continue;
+            }
+
+            DamageService.Apply(character, target, Config.DamageParams);
         }
     }
 }
