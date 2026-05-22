@@ -40,6 +40,6 @@ public class ResultScreen : MonoBehaviour
         TimePlayed.text = $"{statistics.TimePlayed:00} s";
         DamageDealt.text = statistics.DamageDealt.ToString("00.00");
         DamageReceived.text = statistics.DamageReceived.ToString("00.00");
-        EnemyKilled.text = statistics.EnemyKilled.ToString();
+        EnemyKilled.text = statistics.EnemiesKilled.ToString();
     }
 }

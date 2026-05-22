@@ -43,7 +43,7 @@ public class MetaScreen : MonoBehaviour
         TimePlayed.text = $"{metaData.Statistics.TimePlayed:00} s";
         DamageDealt.text = metaData.Statistics.DamageDealt.ToString("00.00");
         DamageReceived.text = metaData.Statistics.DamageReceived.ToString("00.00");
-        EnemyKilled.text = metaData.Statistics.EnemyKilled.ToString();
+        EnemyKilled.text = metaData.Statistics.EnemiesKilled.ToString();
         Coins.text = metaData.Coins.ToString();
     }
 }

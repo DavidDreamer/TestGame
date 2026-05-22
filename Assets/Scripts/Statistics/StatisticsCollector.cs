@@ -14,11 +14,13 @@ public class StatisticsCollector : IDisposable
         Statistics = new();
 
         DamageService.OnDamageApply += OnDamageApplied;
+        DamageService.OnCharacterKill += OnCharacterKilled;
     }
 
     public void Dispose()
     {
         DamageService.OnDamageApply -= OnDamageApplied;
+        DamageService.OnCharacterKill -= OnCharacterKilled;
     }
 
     private void OnDamageApplied(DamageEventArgs damageEventArgs)
@@ -30,6 +32,14 @@ public class StatisticsCollector : IDisposable
         else if (damageEventArgs.Target == GameData.Player)
         {
             Statistics.DamageReceived += damageEventArgs.Amount;
+        }
+    }
+
+    private void OnCharacterKilled(KillEventArgs killEventArgs)
+    {
+        if (killEventArgs.Source == GameData.Player)
+        {
+            Statistics.EnemiesKilled ++;
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public static class DamageService
 {
     public static event Action<DamageEventArgs> OnDamageApply;
+    public static event Action<KillEventArgs> OnCharacterKill;
 
     public static void Apply(Character source, Character target, DamageParams damageParams)
     {
@@ -24,12 +25,20 @@ public static class DamageService
         };
 
         OnDamageApply?.Invoke(damageEvenArgs);
-        
+
         bool targetKilled = target.Health.Current == 0;
 
         if (targetKilled)
         {
             target.Die();
+
+            KillEventArgs killEventArgs = new()
+            {
+                Source = source,
+                Target = target
+            };
+
+            OnCharacterKill?.Invoke(killEventArgs);
         }
     }
 }
