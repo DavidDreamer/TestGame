@@ -10,11 +10,23 @@ public class Game : MonoBehaviour
     [field: SerializeField]
     private UI UI { get; set; }
 
+    private IMetaDataProvider MetaDataProvider { get; set; }
+
+    private MetaData MetaData { get; set; }
+
     private GameState State { get; set; }
 
     private GameData Data { get; set; }
 
-    private void Start() => ChangeState(GameState.Meta);
+    private void Start()
+    {
+        MetaDataProvider = new PlayerPrefsMetaDataProvider();
+        MetaData = MetaDataProvider.Load();
+
+        UI.MetaScreen.Refresh(MetaData);
+
+        ChangeState(GameState.Meta);
+    }
 
     private void Update()
     {
@@ -91,7 +103,7 @@ public class Game : MonoBehaviour
 
         void SetupEnemies()
         {
-            int count = Random.Range(Config.MinEnemiesCount, Config.MaxEnemiesCount + 1);
+            int count = UnityEngine.Random.Range(Config.MinEnemiesCount, Config.MaxEnemiesCount + 1);
 
             for (int i = 0; i < count; i++)
             {

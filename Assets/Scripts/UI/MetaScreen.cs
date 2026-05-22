@@ -1,11 +1,12 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MetaScreen : MonoBehaviour
 {
     [field: SerializeField]
-    private TextMeshProUGUI Time { get; set; }
+    private TextMeshProUGUI TimePlayed { get; set; }
 
     [field: SerializeField]
     private TextMeshProUGUI DamageDealt { get; set; }
@@ -17,7 +18,7 @@ public class MetaScreen : MonoBehaviour
     private TextMeshProUGUI EnemyKilled { get; set; }
 
     [field: SerializeField]
-    private TextMeshProUGUI Gold { get; set; }
+    private TextMeshProUGUI Coins { get; set; }
 
     [field: SerializeField]
     private Button Play { get; set; }
@@ -36,4 +37,13 @@ public class MetaScreen : MonoBehaviour
     }
 
     private void OnPlayButtonClick() => InputProvided = true;
+
+    public void Refresh(MetaData metaData)
+    {
+        TimePlayed.text = metaData.TimePlayed.ToString();
+        DamageDealt.text = metaData.DamageDealt.ToString();
+        DamageReceived.text = metaData.DamageReceived.ToString();
+        EnemyKilled.text = metaData.EnemyKilled.ToString();
+        Coins.text = metaData.Coins.ToString();
+    }
 }
