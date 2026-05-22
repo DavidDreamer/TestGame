@@ -47,9 +47,6 @@ public class Game : MonoBehaviour
             case GameState.Defeat:
                 Defeat();
                 break;
-            case GameState.Cleanup:
-                Cleanup();
-                break;
             default: throw new System.Exception($"Unknown State : {State}");
         }
     }
@@ -158,7 +155,8 @@ public class Game : MonoBehaviour
     {
         if (UI.VictoryScreen.InputProvided)
         {
-            ChangeState(GameState.Cleanup);
+            Cleanup();
+            ChangeState(GameState.Meta);
         }
     }
 
@@ -166,7 +164,8 @@ public class Game : MonoBehaviour
     {
         if (UI.DefeatScreen.InputProvided)
         {
-            ChangeState(GameState.Cleanup);
+            Cleanup();
+            ChangeState(GameState.Meta);
         }
     }
 
@@ -174,6 +173,5 @@ public class Game : MonoBehaviour
     {
         Data.Dispose();
         UI.Cleanup();
-        ChangeState(GameState.Meta);
     }
 }
