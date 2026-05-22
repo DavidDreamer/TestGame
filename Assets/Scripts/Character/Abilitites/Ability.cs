@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Ability
@@ -23,10 +24,11 @@ public class Ability
         Config = config;
     }
 
-    public void Activate()
+    public void Activate(Character character)
     {
         CastingTimeLeft = Config.CastTime;
         State = AbilityState.Casting;
+        OnCastStarted(character);
     }
 
     public void Tick(Character character)
@@ -37,16 +39,13 @@ public class Ability
                 break;
             case AbilityState.Casting:
                 CastingTimeLeft = Mathf.Max(0, CastingTimeLeft - Time.deltaTime);
+                float progress = 1 - CastingTimeLeft / Config.CastTime;
+                OnCasting(character, progress);
                 if (CastingTimeLeft == 0)
                 {
-                    OnCast(character);
+                    OnCastFinished(character);
                     CooldownTimeLeft = Cooldown;
                     State = AbilityState.OnCooldown;
-                }
-                else
-                {
-                    float progress = CastingTimeLeft / Config.CastTime;
-                    OnCasting(character, progress);
                 }
                 break;
             case AbilityState.OnCooldown:
@@ -59,11 +58,15 @@ public class Ability
         }
     }
 
+    public virtual void OnCastStarted(Character character)
+    {
+    }
+
     public virtual void OnCasting(Character character, float progress)
     {
     }
 
-    public virtual void OnCast(Character character)
+    public virtual void OnCastFinished(Character character)
     {
     }
 }

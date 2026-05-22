@@ -52,7 +52,7 @@ public class Character : MonoBehaviour
             return;
         }
 
-        ability.Activate();
+        ability.Activate(this);
 
         Animation.Play(ability.Name, PlayMode.StopAll);
     }

@@ -17,7 +17,7 @@ MonoBehaviour:
   <Cooldown>k__BackingField: 2.5
   <Radius>k__BackingField: 2
   <DamageParams>k__BackingField:
-    Min: 5
-    Max: 10
+    Min: 10
+    Max: 15
     CritChance: 0.05
     CritMultiplier: 1.5

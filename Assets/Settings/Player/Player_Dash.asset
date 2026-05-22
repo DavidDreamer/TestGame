@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: Player_Dash
   m_EditorClassIdentifier: Assembly-CSharp::DashAbilityConfig
   <Name>k__BackingField: Dash
-  <Cooldown>k__BackingField: 5
-  <Distance>k__BackingField: 5
+  <CastTime>k__BackingField: 0.2
+  <Cooldown>k__BackingField: 1
+  <Distance>k__BackingField: 10
+  <DamageRadius>k__BackingField: 3
+  <DamageParams>k__BackingField:
+    Min: 40
+    Max: 50
+    CritChance: 0.05
+    CritMultiplier: 1.5

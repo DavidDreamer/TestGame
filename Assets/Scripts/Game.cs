@@ -1,7 +1,6 @@
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Game : MonoBehaviour
 {
@@ -96,7 +95,7 @@ public class Game : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
-                Vector3 position = GetRandomPositionOnSurface();
+                Vector3 position = NavMeshUtils.GetRandomPositionOnSurface();
                 Character character = Instantiate(Config.EnemyPrefab, position, Quaternion.identity);
                 character.Initialize();
 
@@ -107,23 +106,6 @@ public class Game : MonoBehaviour
                 UI.CreateWorldSpaceHealthWidget(character);
 
                 Data.Enemies.Add(character);
-            }
-
-            Vector3 GetRandomPositionOnSurface()
-            {
-                //Hardcoded radius of the location
-                const float radius = 25;
-
-                Vector3 position = Random.insideUnitSphere * radius;
-
-                if (NavMesh.SamplePosition(position, out NavMeshHit hit, radius, NavMesh.AllAreas))
-                {
-                    return hit.position;
-                }
-                else
-                {
-                    return Vector3.zero;
-                }
             }
         }
     }
