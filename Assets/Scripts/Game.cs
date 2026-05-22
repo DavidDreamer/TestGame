@@ -16,14 +16,12 @@ public class Game : MonoBehaviour
 
     private GameState State { get; set; }
 
-    private GameData Data { get; set; }
+    private GameData GameData { get; set; }
 
     private StatisticsCollector StatisticsCollector { get; set; }
 
     private void Start()
     {
-        StatisticsCollector = new();
-
         MetaDataProvider = new PlayerPrefsMetaDataProvider();
         MetaData = MetaDataProvider.Load();
 
@@ -60,7 +58,7 @@ public class Game : MonoBehaviour
         switch (State)
         {
             case GameState.Fight:
-                Data.Camera.Tick();
+                GameData.Camera.Tick();
                 break;
         }
     }
@@ -81,25 +79,27 @@ public class Game : MonoBehaviour
 
     private void Setup()
     {
-        Data = new();
+        GameData = new();
 
         SetupPlayerCharacter();
         SetupEnemies();
+
+        StatisticsCollector = new(GameData);
 
         ChangeState(GameState.Fight);
 
         void SetupPlayerCharacter()
         {
-            Data.Player = Instantiate(Config.PlayerPrefab, Vector3.zero, Quaternion.identity);
-            Data.Player.Initialize();
+            GameData.Player = Instantiate(Config.PlayerPrefab, Vector3.zero, Quaternion.identity);
+            GameData.Player.Initialize();
 
-            Data.Camera = Instantiate(Config.CameraController);
-            Data.Camera.Bind(Data.Player);
+            GameData.Camera = Instantiate(Config.CameraController);
+            GameData.Camera.Bind(GameData.Player);
 
-            Data.InputController = Instantiate(Config.CharacterInputController);
-            Data.InputController.Bind(Data.Player);
+            GameData.InputController = Instantiate(Config.CharacterInputController);
+            GameData.InputController.Bind(GameData.Player);
 
-            UI.Bind(Data.Player);
+            UI.Bind(GameData.Player);
         }
 
         void SetupEnemies()
@@ -114,27 +114,27 @@ public class Game : MonoBehaviour
 
                 var aiController = character.AddComponent<CharacterAIController>();
                 aiController.Initialize(character);
-                Data.AIControllers.Add(aiController);
+                GameData.AIControllers.Add(aiController);
 
                 UI.CreateWorldSpaceHealthWidget(character);
 
-                Data.Enemies.Add(character);
+                GameData.Enemies.Add(character);
             }
         }
     }
 
     private void Fight()
     {
-        Data.InputController.Tick();
+        GameData.InputController.Tick();
 
-        foreach (var aiController in Data.AIControllers)
+        foreach (var aiController in GameData.AIControllers)
         {
-            aiController.Tick(Data.Player);
+            aiController.Tick(GameData.Player);
         }
 
-        Data.Player.Tick();
+        GameData.Player.Tick();
 
-        foreach (var enemy in Data.Enemies)
+        foreach (var enemy in GameData.Enemies)
         {
             enemy.Tick();
         }
@@ -153,17 +153,17 @@ public class Game : MonoBehaviour
             ChangeState(GameState.Defeat);
         }
 
-        bool WinCondition() => Data.Enemies.All(enemy => enemy.IsDead);
+        bool WinCondition() => GameData.Enemies.All(enemy => enemy.IsDead);
 
-        bool LoseCondition() => Data.Player.IsDead;
+        bool LoseCondition() => GameData.Player.IsDead;
     }
 
     private void Victory()
     {
         if (UI.VictoryScreen.InputProvided)
         {
-            Cleanup();
             MetaData.Coins += Config.CoinsForVictory;
+            Cleanup();
             ChangeState(GameState.Meta);
         }
     }
@@ -173,16 +173,16 @@ public class Game : MonoBehaviour
         if (UI.DefeatScreen.InputProvided)
         {
             Cleanup();
-            UI.MetaScreen.Refresh(MetaData);
             ChangeState(GameState.Meta);
         }
     }
 
     private void Cleanup()
     {
-        Data.Dispose();
+        GameData.Dispose();
         UI.Cleanup();
         MetaData.Statistics += StatisticsCollector.Statistics;
+        StatisticsCollector.Dispose();
         MetaDataProvider.Save(MetaData);
         UI.MetaScreen.Refresh(MetaData);
     }
