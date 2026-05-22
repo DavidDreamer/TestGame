@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3492190972173875283, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
+      propertyPath: m_Name
+      value: TimePlayed
+      objectReference: {fileID: 0}
     - target: {fileID: 5383524750580980827, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -315,6 +319,14 @@ PrefabInstance:
     - target: {fileID: 5383524750580980827, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744777149183591790, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
+      propertyPath: m_text
+      value: Time Played
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836704041997573484, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
+      propertyPath: m_Name
+      value: TimePlayed
       objectReference: {fileID: 0}
     - target: {fileID: 6883900610334704623, guid: d089a36a8a572d1439197cc2149c4a2f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -443,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3842f4fa019f83049a7574b04df98f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VictoryScreen
-  <Time>k__BackingField: {fileID: 8083646376458082810}
+  <TimePlayed>k__BackingField: {fileID: 8083646376458082810}
   <DamageDealt>k__BackingField: {fileID: 3987903674464871010}
   <DamageReceived>k__BackingField: {fileID: 4671267581515060010}
   <EnemyKilled>k__BackingField: {fileID: 6912133947170963468}

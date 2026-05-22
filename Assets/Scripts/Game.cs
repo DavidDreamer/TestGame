@@ -18,8 +18,12 @@ public class Game : MonoBehaviour
 
     private GameData Data { get; set; }
 
+    private StatisticsCollector StatisticsCollector { get; set; }
+
     private void Start()
     {
+        StatisticsCollector = new();
+
         MetaDataProvider = new PlayerPrefsMetaDataProvider();
         MetaData = MetaDataProvider.Load();
 
@@ -100,7 +104,7 @@ public class Game : MonoBehaviour
 
         void SetupEnemies()
         {
-            int count = UnityEngine.Random.Range(Config.MinEnemiesCount, Config.MaxEnemiesCount + 1);
+            int count = Random.Range(Config.MinEnemiesCount, Config.MaxEnemiesCount + 1);
 
             for (int i = 0; i < count; i++)
             {
@@ -136,13 +140,16 @@ public class Game : MonoBehaviour
         }
 
         UI.Tick();
+        StatisticsCollector.Tick();
 
         if (WinCondition())
         {
+            UI.VictoryScreen.Refresh(StatisticsCollector.Statistics, Config.CoinsForVictory);
             ChangeState(GameState.Victory);
         }
         else if (LoseCondition())
         {
+            UI.DefeatScreen.Refresh(StatisticsCollector.Statistics);
             ChangeState(GameState.Defeat);
         }
 
@@ -156,6 +163,7 @@ public class Game : MonoBehaviour
         if (UI.VictoryScreen.InputProvided)
         {
             Cleanup();
+            MetaData.Coins += Config.CoinsForVictory;
             ChangeState(GameState.Meta);
         }
     }
@@ -165,6 +173,7 @@ public class Game : MonoBehaviour
         if (UI.DefeatScreen.InputProvided)
         {
             Cleanup();
+            UI.MetaScreen.Refresh(MetaData);
             ChangeState(GameState.Meta);
         }
     }
@@ -173,5 +182,8 @@ public class Game : MonoBehaviour
     {
         Data.Dispose();
         UI.Cleanup();
+        MetaData.Statistics += StatisticsCollector.Statistics;
+        MetaDataProvider.Save(MetaData);
+        UI.MetaScreen.Refresh(MetaData);
     }
 }

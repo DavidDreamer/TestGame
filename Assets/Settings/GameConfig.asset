@@ -18,3 +18,4 @@ MonoBehaviour:
   <CharacterInputController>k__BackingField: {fileID: 1264917246686779373, guid: 7f4da7c6bb0327949b5fd57657515aa0, type: 3}
   <MinEnemiesCount>k__BackingField: 3
   <MaxEnemiesCount>k__BackingField: 5
+  <CoinsForVictory>k__BackingField: 100

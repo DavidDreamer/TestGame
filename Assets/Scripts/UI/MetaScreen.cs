@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,10 +39,11 @@ public class MetaScreen : MonoBehaviour
 
     public void Refresh(MetaData metaData)
     {
-        TimePlayed.text = metaData.TimePlayed.ToString();
-        DamageDealt.text = metaData.DamageDealt.ToString();
-        DamageReceived.text = metaData.DamageReceived.ToString();
-        EnemyKilled.text = metaData.EnemyKilled.ToString();
+        //no formatting, only seconds displayed
+        TimePlayed.text = $"{metaData.Statistics.TimePlayed:00} s";
+        DamageDealt.text = metaData.Statistics.DamageDealt.ToString("00.00");
+        DamageReceived.text = metaData.Statistics.DamageReceived.ToString("00.00");
+        EnemyKilled.text = metaData.Statistics.EnemyKilled.ToString();
         Coins.text = metaData.Coins.ToString();
     }
 }

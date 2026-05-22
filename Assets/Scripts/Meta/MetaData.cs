@@ -3,9 +3,6 @@ using System;
 [Serializable]
 public class MetaData
 {
-    public float TimePlayed;
-    public float DamageDealt;
-    public float DamageReceived;
-    public int EnemyKilled;
+    public Statistics Statistics = new();
     public int Coins;
 }

@@ -20,4 +20,7 @@ public class GameConfig : ScriptableObject
 
     [field: SerializeField]
     public int MaxEnemiesCount { get; private set; }
+
+    [field: SerializeField]
+    public int CoinsForVictory { get; private set; }
 }
