@@ -24,5 +24,12 @@ public static class DamageService
         };
 
         OnDamageApply?.Invoke(damageEvenArgs);
+        
+        bool targetKilled = target.Health.Current == 0;
+
+        if (targetKilled)
+        {
+            target.Die();
+        }
     }
 }

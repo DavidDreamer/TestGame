@@ -16,9 +16,12 @@ public class Character : MonoBehaviour
     public Animation Animation { get; private set; }
 
     [field: SerializeField]
+    public Ragdoll Ragdoll { get; private set; }
+
+    [field: SerializeField]
     public Health Health { get; set; }
 
-    public bool IsDead => Health.Current == 0f;
+    public bool IsDead { get; private set; }
 
     //Assume we always have 2 abilities
     public Ability[] Abilities { get; private set; }
@@ -37,10 +40,24 @@ public class Character : MonoBehaviour
 
     public void Tick()
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         for (int i = 0; i < Abilities.Length; i++)
         {
             Abilities[i].Tick(this);
         }
+    }
+
+    public void Die()
+    {
+        IsDead = true;
+        Animation.enabled = false;
+        CharacterController.enabled = false;
+        NavMeshAgent.enabled = false;
+        Ragdoll.Enable(true);
     }
 
     public void TryActivateAbility(int index)

@@ -30,6 +30,11 @@ public class AttackAbility : Ability
                 continue;
             }
 
+            if (target.IsDead)
+            {
+                continue;
+            }
+            
             DamageService.Apply(character, target, Config.DamageParams);
         }
     }

@@ -48,6 +48,11 @@ public class DashAbility : Ability
                 continue;
             }
 
+            if (target.IsDead)
+            {
+                continue;
+            }
+            
             if (AffectedChararcters.Contains(target))
             {
                 continue;

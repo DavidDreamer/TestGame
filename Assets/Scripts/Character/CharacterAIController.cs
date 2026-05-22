@@ -15,6 +15,11 @@ public class CharacterAIController : MonoBehaviour
 
     public void Tick(Character target)
     {
+        if (Character.IsDead)
+        {
+            return;
+        }
+
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
         var attackAbility = (AttackAbility)Character.Abilities[0];
 
