@@ -485,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3217570480961562681}
   - component: {fileID: 851279953065125966}
+  - component: {fileID: 2044696848130003795}
   m_Layer: 5
   m_Name: HealthWidget
   m_TagString: Untagged
@@ -525,8 +526,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338aca800ca524c49aaa8c8af3f960f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthWidget
+  <CanvasGroup>k__BackingField: {fileID: 2044696848130003795}
   <Slider>k__BackingField: {fileID: 5118648637608310002}
   <Label>k__BackingField: {fileID: 6144169330620742685}
+  <HideWhenOutOfHealth>k__BackingField: 0
+--- !u!225 &2044696848130003795
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878392428866281315}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7037122482763081453
 GameObject:
   m_ObjectHideFlags: 0

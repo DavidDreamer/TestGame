@@ -5,12 +5,18 @@ using UnityEngine.UI;
 public class HealthWidget : MonoBehaviour
 {
     [field: SerializeField]
-    private Slider Slider {get; set;}
+    private CanvasGroup CanvasGroup { get; set; }
 
     [field: SerializeField]
-    private TextMeshProUGUI Label {get; set;}
-    
-    private Health Health {get;set;}
+    private Slider Slider { get; set; }
+
+    [field: SerializeField]
+    private TextMeshProUGUI Label { get; set; }
+
+    [field: SerializeField]
+    private bool HideWhenOutOfHealth { get; set; }
+
+    private Health Health { get; set; }
 
     public void Bind(Health health)
     {
@@ -19,12 +25,17 @@ public class HealthWidget : MonoBehaviour
         Slider.minValue = 0;
         Slider.maxValue = health.Maximum;
     }
-    
-    public void Tick()
+
+    public virtual void Tick()
     {
         if (Health == null)
         {
             return;
+        }
+
+        if (HideWhenOutOfHealth)
+        {
+            CanvasGroup.alpha = Health.Current > 0f ? 1f : 0f;
         }
 
         Slider.value = Health.Current;

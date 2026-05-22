@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851279953065125966, guid: d08d12f5cd7cc5646a9a4cb1a077ca3c, type: 3}
+      propertyPath: <HideWhenOutOfHealth>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1966577867541364798, guid: d08d12f5cd7cc5646a9a4cb1a077ca3c, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
