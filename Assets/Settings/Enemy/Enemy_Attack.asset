@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackAbilityConfig
   <Name>k__BackingField: Attack
   <CastTime>k__BackingField: 0.4
-  <Cooldown>k__BackingField: 2.5
+  <Cooldown>k__BackingField: 2
   <Radius>k__BackingField: 2
   <DamageParams>k__BackingField:
     Min: 10

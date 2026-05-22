@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashAbilityConfig
   <Name>k__BackingField: Dash
   <CastTime>k__BackingField: 0.2
-  <Cooldown>k__BackingField: 1
+  <Cooldown>k__BackingField: 3
   <Distance>k__BackingField: 10
   <DamageRadius>k__BackingField: 3
   <DamageParams>k__BackingField:
